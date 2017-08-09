@@ -172,7 +172,40 @@
                                 <div class="row">
                                     <div class="col-md-8"><h4><b>Basis of Human Rights Violations:</b></h4></div><br/>
                                 </div>
-                                aaad
+                                        <div class="form-group{{ $errors->has('violation') ? ' has-error' : '' }}">
+                                    <label for="violation" class="col-md-4 control-label">Violations</label>
+
+                                    <div class="col-md-6">
+                                        <select id="violation" type="violation" class="form-control" name="violation">
+                                            <option value="">Select Violation Type</option>
+                                            @foreach ($violation as $violations)
+                                <option value="{{ $violations->id }}">{{ $violations->vtype }}</option>
+                                            @endforeach
+                                        </select>
+
+                                        @if ($errors->has('violation'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('violation') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                {{--  end  --}}
+                                
+                                <div class="form-group{{ $errors->has('complain') ? ' has-error' : '' }}">
+                                <label for="name" class="col-md-4 control-label">Complain</label>
+
+                                    <div class="col-md-6">
+                                        <input id="complain" type="text" class="form-control" name="complain" value="{{ old('complain') }}" required autofocus>
+
+                                        @if ($errors->has('complain'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('complain') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                
                                 <div class="row">
                                     <div class="col-md-3">{!! Form::label('', 'Complain in brief:') !!}</div>
                                     <div class="col-md-5">{!! Form::textarea('complain',null, ['size'=>'50x5']) !!}</div>

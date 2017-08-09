@@ -9,8 +9,8 @@ class ViolationsController extends Controller
 {
     public function show()
     {
-        $violations = new Violations::all();
+        $violation = Violations::all();
 
-        return view('complains.create',compact('violations'));
+        return view('complains.create',compact('violation'));
     }
 }
