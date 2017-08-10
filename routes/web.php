@@ -18,4 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('new_complain', 'ComplainsController@create');
+Route::get('new_complain', 'ComplainsController@showForm');
+
+Route::post('new_complain', 'ComplainsController@store');
