@@ -47,14 +47,12 @@
                                 <label for="name" class="col-md-4 control-label">Priority</label>
 
                                     <div class="col-md-6">
-                                    
-                                        <select id="priority" type="" class="form-control" name="priority">
-                                        <option value="">Select Priority</option>
-                                        <option value="low">Low</option>
-                                        <option value="medium">Medium</option>
-                                        <option value="high">High</option>
+                                        <select id="priority" class="form-control" name="priority">
+                                            <option value="">Select Priority</option>
+                                            <option value="1">Low</option>
+                                            <option value="2">Medium</option>
+                                            <option value="3">High</option>
                                         </select>
-
                                         @if ($errors->has('priority'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('priority') }}</strong>
@@ -160,7 +158,7 @@
                                         <select id="violation" type="violation" class="form-control" name="violation">
                                             <option value="">Select Violation Type</option>
                                             @foreach ($violation as $violations)
-                                <option value="{{ $violations->id }}">{{ $violations->vtype }}</option>
+                                            <option value="{{ $violations->id }}">{{ $violations->vtype }}</option>
                                             @endforeach
                                         </select>
 
@@ -190,6 +188,26 @@
                                         @endif
                                     </div>
                                 </div>
+
+                                <div class="form-group{{ $errors->has('attachement') ? ' has-error' : '' }}">
+                                <label for="name" class="col-md-4 control-label">Attachement</label>
+
+                                    <div class="col-md-6">
+                                        <input
+                                            type="file" 
+                                            id="attachement" 
+                                            class="form-control" 
+                                            name="attachement" 
+                                            value="{{ old('attachement') }}">
+
+                                        @if ($errors->has('attachement'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('attachement') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div class="col-md-6">
                                  <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
