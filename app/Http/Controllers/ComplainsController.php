@@ -27,7 +27,7 @@ class ComplainsController extends Controller
           'contact_number' => 'required|numeric|max:11',
           'response_before' => 'required',
           'complain' => 'required',
-          'attachement' => 'required|mimes:jpg'
+          'attachement' => 'required|attachement|mimes:jpeg,png,jpg,pdf.docx,doc|max:2048'
       ]);
       
       $complain = new StudentComplains([
@@ -45,7 +45,9 @@ class ComplainsController extends Controller
           'complain' => $request->input('complain'), 
       ]);
 
-      return back()->with("status","Your message has been received");
+      $complain->save();
+
+      return redirect()->back()->with("status","Your message has been received");
     }
 
 }
