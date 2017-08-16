@@ -27,9 +27,19 @@ class ComplainsController extends Controller
           'contact_number' => 'required|numeric|max:11',
           'response_before' => 'required',
           'complain' => 'required',
-          'attachement' => 'required|attachement|mimes:jpeg,png,jpg,pdf.docx,doc|max:2048'
+          'attachement' => 'required|attachement|mimes:jpeg,png,jpg,pdf,docx,doc|max:2048'
       ]);
       
+      $attachdoc = $request->file('attachement');
+
+       $input['doc'] = time().'.'.$attachdoc->getClientOriginalExtension();
+
+       $output = public_path('/documents');
+
+       $attachdoc->move($output,$input['doc']);
+
+       $this->postImage->add($input);
+
       $complain = new StudentComplains([
           'user_id' => Auth::user()->id,
           'case_number' => $request->input('case_number'),
