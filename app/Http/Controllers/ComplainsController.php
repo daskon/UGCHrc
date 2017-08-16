@@ -24,21 +24,14 @@ class ComplainsController extends Controller
           'nic_number' => 'bail:required|max:10',
           'address' => 'required',
           'complained_date' => 'required',
-          'contact_number' => 'required|numeric|max:11',
+          'contact_number' => 'required|numeric|min:10',
           'response_before' => 'required',
           'complain' => 'required',
-          'attachement' => 'required|attachement|mimes:jpeg,png,jpg,pdf,docx,doc|max:2048'
       ]);
       
-      $attachdoc = $request->file('attachement');
+       $docName = time().'.'.$request->attachement->getClientOriginalExtension();
 
-       $input['doc'] = time().'.'.$attachdoc->getClientOriginalExtension();
-
-       $output = public_path('/documents');
-
-       $attachdoc->move($output,$input['doc']);
-
-       $this->postImage->add($input);
+       $request->attachement->move(public_path('documents'), $docoName);
 
       $complain = new StudentComplains([
           'user_id' => Auth::user()->id,
@@ -53,6 +46,7 @@ class ComplainsController extends Controller
           'response_before' => $request->input('response_before'),
           'v_id' => $request->input('violation'),
           'complain' => $request->input('complain'), 
+          'attachement' => $docName
       ]);
 
       $complain->save();

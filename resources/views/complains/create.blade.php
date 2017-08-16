@@ -18,7 +18,7 @@
                             </div>
                             <div class="media-body">
 
-                            <form class="form-horizontal" method="POST" action="{{ url('new_complain') }}">
+                            <form class="form-horizontal" method="POST" action="{{ url('new_complain') }}" file="true">
                                  {!! csrf_field() !!}
 
                                 <div class="form-group{{ $errors->has('case_number') ? ' has-error' : '' }}">
