@@ -19,7 +19,7 @@
                             <div class="media-body">
 
                             <form class="form-horizontal" method="POST" action="{{ url('new_complain') }}" file="true">
-                                 {!! csrf_field() !!}
+                                 {{csrf_field()}}
 
                                 <div class="form-group{{ $errors->has('case_number') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">Case No</label>
