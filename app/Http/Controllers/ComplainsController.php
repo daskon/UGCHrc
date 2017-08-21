@@ -31,10 +31,10 @@ class ComplainsController extends Controller
       
        $docName = time().'.'.$request->attachement->getClientOriginalExtension();
 
-       $request->attachement->move(public_path('documents'), $docoName);
+       $request->attachement->move(public_path('documents'), $docName);
 
       $complain = new StudentComplains([
-          'user_id' => Auth::user()->id,
+          //'user_id' => Auth::user()->id,
           'case_number' => $request->input('case_number'),
           'complain_subject' => $request->input('complain_subject'),
           'priority' => $request->input('priority'),
@@ -49,7 +49,7 @@ class ComplainsController extends Controller
           'attachement' => $docName
       ]);
 
-      $complain->save();
+      //$complain->save();
 
       return redirect()->back()->with("status","Your message has been received");
     }

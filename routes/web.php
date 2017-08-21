@@ -18,6 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('new_complain', 'ComplainsController@showForm');
 
-Route::post('new_complain', 'ComplainsController@store');
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
+    Route::get('new_complain', 'ComplainsController@showForm');
+    Route::post('new_complain', 'ComplainsController@store');
+});
