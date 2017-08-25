@@ -21,5 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     Route::get('new_complain', 'ComplainsController@showForm');
+    Route::get('view_complain', 'ComplainsController@displayComplains');
+    Route::get('reply_complain/{case_number}', 'ComplainsController@replyToComplain');
+
     Route::post('new_complain', 'ComplainsController@store');
+    
 });

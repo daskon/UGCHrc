@@ -2,7 +2,13 @@
 @extends('layouts.app')
 
 @section('content')
-
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                 Add your complain | 
+                <a href="{{ url('/home') }}">Back</a>
+                </div>
     <div class="panel panel-default">
         <table class="table">
 
@@ -18,7 +24,7 @@
                             </div>
                             <div class="media-body">
 
-                            <form class="form-horizontal" method="POST" action="{{ url('new_complain') }}" enctype="multipart/form-data">
+                            <form class="form-horizontal" method="POST" action="{{ url('admin/new_complain') }}" enctype="multipart/form-data">
                                  {{csrf_field()}}
 
                                 <div class="form-group{{ $errors->has('case_number') ? ' has-error' : '' }}">
@@ -230,7 +236,8 @@
 
         </table>
     </div>
-
+   </div>
+</div>
     <div class="text-center">
         <nav>
 

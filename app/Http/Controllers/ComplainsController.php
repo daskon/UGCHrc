@@ -51,7 +51,19 @@ class ComplainsController extends Controller
 
       $complain->save();
 
-      return redirect()->back()->with("status","Your message has been received");
+      return redirect()->back()->with("status","Your complain has been recorded");
     }
 
+    public function displayComplains(){
+
+       $complain = StudentComplains::all();
+
+       return view('complains.display',compact('complain'));
+    }  
+
+    public function replyToComplain($case_number){
+
+       $caseno = StudentComplains::where('case_number', $case_number)->firstOrFail();
+        return view('complains.reply', compact('caseno'));
+    }
 }

@@ -8,7 +8,8 @@
                 <div class="panel-heading">UGC HRM</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <div><a href="{{ url('admin/new_complain') }}">Add Complain</a></div>
+                    <div><a href="{{ url('admin/view_complain') }}">View Complain</a></div>
                 </div>
             </div>
         </div>
