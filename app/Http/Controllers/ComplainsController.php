@@ -31,7 +31,7 @@ class ComplainsController extends Controller
       
        $docName = time().'.'.$request->attachement->getClientOriginalExtension();
 
-       $request->attachement->move(public_path('documents'), $docName);
+       $path = $request->attachement->move(public_path('documents'), $docName);
 
       $complain = new StudentComplains([
           'user_id' => Auth::user()->id,
@@ -46,7 +46,7 @@ class ComplainsController extends Controller
           'response_before' => $request->input('response_before'),
           'v_id' => $request->input('violation'),
           'complain' => $request->input('complain'), 
-          'attachement' => $docName
+          'attachement' => $path
       ]);
 
       $complain->save();
@@ -63,7 +63,10 @@ class ComplainsController extends Controller
 
     public function replyToComplain($case_number){
 
-       $caseno = StudentComplains::where('case_number', $case_number)->firstOrFail();
-        return view('complains.reply', compact('caseno'));
+        $caseno = StudentComplains::where('case_number', $case_number)->firstOrFail();
+
+        $type = Violations::where('id',$caseno->v_id)->firstOrFail();
+
+        return view('complains.reply', compact('caseno','type'));
     }
 }
