@@ -16,20 +16,20 @@ class CreateStudentComplainsTable extends Migration
         Schema::create('student_complains', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('case_number')->unique();
+            $table->string('case_number',20)->unique();
             $table->bigInteger('received')->unsigned()->default(0);
-            $table->string('complain_subject',30);
+            $table->string('complain_subject',50);
+            $table->string('complainer_name',50);
             $table->string('priority',6);
-            $table->string('contact_person',30);
+            $table->string('contact_person',50);
             $table->string('nic_number',10)->unique();
             $table->string('address',50);
             $table->date('complained_date');
             $table->bigInteger('contact_number')->unsigned();
             $table->date('response_before');
             $table->bigInteger('v_id')->unsigned();
-            $table->foreign('v_id')->references('id')->on('violations');
             $table->string('complain',200);
+            $table->string('district');
             $table->string('attachement',255);
             $table->bigInteger('status')->unsigned()->default(1);
             $table->timestamps();

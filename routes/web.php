@@ -25,5 +25,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     Route::get('reply_complain/{case_number}', 'ComplainsController@replyToComplain');
 
     Route::post('new_complain', 'ComplainsController@store');
-    
+    Route::post('response_complain', 'ComplainsController@responseComplain');
 });

@@ -26,26 +26,30 @@
                         </p>
                         <p>Created on: {{ $caseno->created_at }}</p>
                         <p>Response before: {{ $caseno->response_before }}</p>
+                        <p>
+                           Attachement <br/>
+                           <a href="{{ public_path('documents/'.$caseno->attachement) }}">gfg</a>
+                        </p>
                     </div>
                     <hr>
                     <div class="comment-form">
-                        <form action="{{ url('') }}" method="POST" class="form">
+                        <form action="{{ url('admin/response_complain') }}" method="POST" class="form">
                             {!! csrf_field() !!}
 
-                            <input type="hidden" name="case_no" value="{{ $caseno->case_number }}">
+                            <input type="hidden" name="case_number_reply" id="case_number_reply" value="{{ $caseno->case_number }}">
 
-                            <div class="form-group{{ $errors->has('reply') ? ' has-error' : '' }}">
-                                <textarea rows="10" id="reply" class="form-control" name="reply"></textarea>
+                            <div class="form-group{{ $errors->has('response') ? ' has-error' : '' }}">
+                                <textarea rows="10" id="response" class="form-control" name="response"></textarea>
 
-                                @if ($errors->has('reply'))
+                                @if ($errors->has('response'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('reply') }}</strong>
+                                        <strong>{{ $errors->first('response') }}</strong>
                                     </span>
                                 @endif
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Reply</button>
                             </div>
                         </form>
                     </div>     

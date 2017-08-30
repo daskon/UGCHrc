@@ -15,6 +15,10 @@ class CreateComplainReplysTable extends Migration
     {
         Schema::create('complain_replys', function (Blueprint $table) {
             $table->increments('id');
+            $table->bigInteger('user_id_reply')->unsigned();
+            $table->string('case_number_reply',20)->unique();
+            $table->string('response');
+            $table->date('response_date');
             $table->timestamps();
         });
     }

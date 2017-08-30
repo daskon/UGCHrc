@@ -49,6 +49,36 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group{{ $errors->has('complainer_name') ? ' has-error' : '' }}">
+                                <label for="name" class="col-md-4 control-label">Complainer Name</label>
+
+                                    <div class="col-md-6">
+                                        <input id="complainer_name" type="text" class="form-control" name="complainer_name" value="{{ old('complainer_name') }}" >
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('complainer_name') }}</strong>
+                                            </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('district') ? ' has-error' : '' }}">
+                                <label for="district" class="col-md-4 control-label">Place of violation:</label>
+
+                                <div class="col-md-6">
+                                        <select id="district" class="form-control" name="district">
+                                            <option value="">Select District</option>
+                                            @foreach ($district as $dis)
+                                            <option value="{{ $dis->id }}">{{ $dis->district_name }}</option>
+                                            @endforeach
+                                        </select>
+
+                                        @if ($errors->has('district'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('district') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                
                                 <div class="form-group{{ $errors->has('priority') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">Priority</label>
 
