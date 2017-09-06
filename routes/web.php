@@ -26,4 +26,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
     Route::post('new_complain', 'ComplainsController@store');
     Route::post('response_complain', 'ComplainsController@responseComplain');
+
+    Route::put('edit_complain/{case_number?}',function(Request $request,$case_number){
+        $complain = App\StudentComplains::find($case_number);
+        $complain->complain_subject = $request->subject;
+        $complain->complainer_name = $request->name;
+        $complain->save();
+        return response()->json($complain);
+});
 });

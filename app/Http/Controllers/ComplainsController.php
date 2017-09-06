@@ -33,7 +33,8 @@ class ComplainsController extends Controller
           'contact_number' => 'required|numeric|min:10',
           'response_before' => 'required',
           'complain' => 'required',
-          'district' => 'required'
+          'district' => 'required',
+          'attachement' => 'required|max:5048'
       ]);
       
        $docName = time().'.'.$request->attachement->getClientOriginalExtension();
