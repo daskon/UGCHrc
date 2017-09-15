@@ -27,8 +27,8 @@
                         <p>Created on: {{ $caseno->created_at }}</p>
                         <p>Response before: {{ $caseno->response_before }}</p>
                         <p>
-                           Attachement <br/>
-                           <a href="{{ public_path('documents/'.$caseno->attachement) }}">gfg</a>
+                           <b> Attachement : </b> <br/>
+                           <a href="{{ public_path('documents/'.$caseno->attachement) }}">{{$caseno->attachement}}</a>
                         </p>
                     </div>
                     <hr>

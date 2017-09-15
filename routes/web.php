@@ -20,18 +20,20 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
-    Route::get('new_complain', 'ComplainsController@showForm');
-    Route::get('view_complain', 'ComplainsController@displayComplains');
-    Route::get('reply_complain/{case_number}', 'ComplainsController@replyToComplain');
 
-    Route::post('new_complain', 'ComplainsController@store');
-    Route::post('response_complain', 'ComplainsController@responseComplain');
+        Route::get('new_complain', 'ComplainsController@showForm');
+        Route::get('view_complain', 'ComplainsController@displayComplains');
+        Route::get('reply_complain/{case_number}', 'ComplainsController@replyToComplain');
 
-    Route::put('edit_complain/{case_number?}',function(Request $request,$case_number){
-        $complain = App\StudentComplains::find($case_number);
-        $complain->complain_subject = $request->subject;
-        $complain->complainer_name = $request->name;
-        $complain->save();
-        return response()->json($complain);
-});
+        Route::post('new_complain', 'ComplainsController@store');
+        Route::post('response_complain', 'ComplainsController@responseComplain');
+
+        Route::put('edit_complain/{case_number?}',function(Request $request,$case_number){
+            $complain = App\StudentComplains::find($case_number);
+            $complain->complain_subject = $request->subject;
+            $complain->complainer_name = $request->name;
+            $complain->save();
+            return response()->json($complain);
+            
+   });
 });
